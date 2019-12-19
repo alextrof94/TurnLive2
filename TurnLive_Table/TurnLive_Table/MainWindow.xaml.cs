@@ -32,11 +32,16 @@ namespace TurnLive_Table
 
 		int InfoNow = 0;
 		string[] Information;
+        double laInfoStartLength = 0;
+        double laInfoStartLeft = 0;
 
-		public MainWindow()
+        public MainWindow()
 		{
 			InitializeComponent();
-			if (System.IO.File.Exists(Environment.CurrentDirectory + "\\Information.txt"))
+            laInfoStartLength = laInfo.Width;
+            laInfoStartLeft = laInfo.Margin.Left;
+
+            if (System.IO.File.Exists(Environment.CurrentDirectory + "\\Information.txt"))
 				Information = File.ReadAllLines(Environment.CurrentDirectory + "\\Information.txt");
 			else
 			{
@@ -82,10 +87,13 @@ namespace TurnLive_Table
 			tiReload = new System.Timers.Timer();
 			tiReload.Elapsed += new System.Timers.ElapsedEventHandler(tiReloadTick);
 			tiReload.Interval = client.ReloadInterval;
-			tiTextChange = new System.Timers.Timer();
-			tiTextChange.Elapsed += new System.Timers.ElapsedEventHandler(tiTextChangeTick);
-			tiTextChange.Interval = 60000;
-			laTime.Content = DateTime.Now.AddHours(HourChange).ToString("HH:mm");
+            tiTextChange = new System.Timers.Timer();
+            tiTextChange.Elapsed += new System.Timers.ElapsedEventHandler(tiTextChangeTick);
+            tiTextChange.Interval = 15000;
+            tiTextRoll = new System.Timers.Timer();
+            tiTextRoll.Elapsed += new System.Timers.ElapsedEventHandler(tiTextRollTick);
+            tiTextRoll.Interval = 60000;
+            laTime.Content = DateTime.Now.AddHours(HourChange).ToString("HH:mm");
 		}
 
 		private void ShowMessage(string str)
@@ -105,21 +113,42 @@ namespace TurnLive_Table
 				client.GetFromServerClients();
 		}
 
-		System.Timers.Timer tiTextChange;
-		private void tiTextChangeTick(object sender, EventArgs e)
-		{
-			Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { TextChange(); }));
-		}
-		private void TextChange()
-		{
-			if (InfoNow < Information.Length - 1)
-				InfoNow++;
-			else
-				InfoNow = 0;
-			laInfo.Content = Information[InfoNow];
-		}
+        System.Timers.Timer tiTextChange;
+        private void tiTextChangeTick(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { TextChange(); }));
+        }
+        private void TextChange()
+        {
+            if (InfoNow < Information.Length - 1)
+                InfoNow++;
+            else
+                InfoNow = 0;
 
-		private void StartTimers()
+            if (laInfoStartLength < laInfo.Width)
+            {
+                tiTextRoll.Interval = tiTextChange.Interval / (laInfo.Width - laInfoStartLength);
+                tiTextRoll.Enabled = true;
+            }
+            else
+            {
+                tiTextRoll.Enabled = false;
+            }
+            laInfo.Margin = new Thickness(laInfoStartLeft, 12, 155, 0);
+            laInfo.Content = Information[InfoNow];
+        }
+
+        System.Timers.Timer tiTextRoll;
+        private void tiTextRollTick(object sender, EventArgs e)
+        {
+            Dispatcher.BeginInvoke(new System.Threading.ThreadStart(delegate { TextRoll(); }));
+        }
+        private void TextRoll()
+        {
+            laInfo.Margin = new Thickness(laInfo.Margin.Left - 1, 12, 155, 0);
+        }
+
+        private void StartTimers()
 		{
 			client.SaveSettings();
 			tiReload.Start();
