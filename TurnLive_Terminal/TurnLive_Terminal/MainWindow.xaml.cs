@@ -14,12 +14,35 @@ using System.Windows.Shapes;
 
 namespace TurnLive_Terminal
 {
-	/// <summary>
-	/// Логика взаимодействия для MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-	{
-		const string ProgrammName = "TurnLive Terminal v2.2";
+    /// <summary>
+    /// Логика взаимодействия для MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+    /* COMPORT UPDATE 12.04.18 */
+        private static char ESC = (char)27;
+        private static char LF = (char)13;
+        /* new string in Citizen */
+        private static char CR = (char)10;
+        private static char SP = (char)32;
+        /* Шрифт типа А (12*24) выделенный, двойной ширины, двойной высоты */
+        private static String FONT_A_DH_DW_B = new String(new char[] { ESC, (char)33, (char)56 });
+        /* Шрифт типа А (12*24) двойной ширины, двойной высоты */
+        private static String FONT_A_DH_DW = new String(new char[] { ESC, (char)33, (char)48 });
+        /* Шрифт типа А (12*24) */
+        private static String FONT_A = new String(new char[] { ESC, (char)33, (char)0 });
+        /* Шрифт типа B (9*17) */
+        private static String FONT_B = new String(new char[] { ESC, (char)33, (char)1 });
+        /* Шрифт типа B (9*17) выделенный, двойной ширины, двойной высоты */
+        private static String FONT_B_DH_DW_B = new String(new char[] { ESC, (char)33, (char)57 });
+        /* Шрифт типа B (9*17) двойной ширины, двойной высоты */
+        private static String FONT_B_DH_DW = new String(new char[] { ESC, (char)33, (char)49 });
+        /* Выбор кодовой страницы CP866 */
+        private static String CP866 = new String(new char[] { ESC, (char)116, (char)7 });
+        /* Отрезка ленты (команда должна следовать за CR) */
+        private static String CUT = new String(new char[] { CR, ESC, (char)105 });
+    /* END COMPORT UPDATE */
+		const string ProgrammName = "TurnLive Terminal v2.3 (12.04.18)";
 		// forms
 		InputText foInputText;
 		ServerSettings foServerSettings;
@@ -88,28 +111,88 @@ namespace TurnLive_Terminal
 				{
 					t.Enabled = client.user.turnEnabled;
 				}
-			foPrintTemplate = new PrintTemplate();
-			foPrintTemplate.laId.Content = client.user.Id;
-			foPrintTemplate.laNumber.Content = client.user.TurnPrefix + client.user.Index;
-			if (client.user.StatusTime.IndexOf(".") > -1)
-				foPrintTemplate.laTime.Content = client.user.StatusTime.Substring(0, client.user.StatusTime.IndexOf(".") - 3);
-			else
-				foPrintTemplate.laTime.Content = client.user.StatusTime.Substring(0, client.user.StatusTime.Length - 3);
-			foPrintTemplate.lbInfos.ItemsSource = client.user.Infos;
-			foPrintTemplate.tbTurnName.Text = client.user.TurnLine;
-			foPrintTemplate.RefreshSize();
-			foPrintTemplate.Show();
-			System.Threading.Thread.Sleep(2000);
-			// Увеличить вывод в 5 раз
-			PrintDialog printDialog = new PrintDialog();
-			foPrintTemplate.grMain.LayoutTransform = new ScaleTransform(5, 5);
-			// Напечатать элемент
-			printDialog.PrintVisual(foPrintTemplate.grMain, "Печать чека" + client.user.TurnPrefix + client.user.Index);
-			// Удалить трансформацию и снова сделать элемент видимым
-			foPrintTemplate.grMain.LayoutTransform = null;
-			foPrintTemplate.Hide();
-			ResetButtons();
-			client.user = new User();
+            string timeToPrint = "00:00:00";
+            if (client.user.StatusTime.IndexOf(".") > -1)
+                timeToPrint = client.user.StatusTime.Substring(0, client.user.StatusTime.IndexOf(".") - 3);
+            else
+                timeToPrint = client.user.StatusTime.Substring(0, client.user.StatusTime.Length - 3);
+
+            if (client.IsComPrinter)
+            {
+                // PRINT TO SERIAL (COM-PORT)
+                try
+                {
+                    // generate string
+                    string dataToPrint = CP866 + FONT_A + "------------------------" + CR +
+                    CR +
+                    CR +
+                    FONT_B_DH_DW_B + "Ваш номер в очереди:" + CR +
+                    CR +
+                    FONT_A_DH_DW_B + " " + client.user.TurnPrefix + " " + client.user.Index + CR +
+                    CR +
+                    CR +
+                    FONT_B_DH_DW_B + client.user.TurnLine + CR +
+                    CR +
+                    CR +
+                    FONT_A_DH_DW + "КЛИЕНТ-ID: " + client.user.Id + CR +
+                    CR +
+                    CR +
+                    FONT_B_DH_DW_B + "ВРЕМЯ: " + timeToPrint + CR +
+                    CR +
+                    CR +
+                    FONT_B_DH_DW_B + " СОХРАНЯЙТЕ ТАЛОН!" + CR +
+                    CR + CR +
+                    "------------------------" +
+                    CR + CR +
+                    CR + CR +
+                    CUT;
+                    // create serial if null
+                    if (client.Serial == null)
+                    {
+                        client.Serial = new System.IO.Ports.SerialPort(client.ComPort, client.ComBaudRate);
+                        client.Serial.WriteTimeout = 500;
+                    }
+                    // connect serial
+                    client.Serial.Open();
+                    // write to serial
+                    client.Serial.Write(dataToPrint);
+                    // close serial
+                    client.Serial.Close();
+                    System.Threading.Thread.Sleep(2000);
+                }
+                catch (Exception ex)
+                {
+                    client.LogAdd(ex.Message);
+                }
+                finally
+                {
+                    if (client.Serial.IsOpen)
+                        client.Serial.Close();
+                }
+            }
+            else
+            {
+                // MANUAL PRINT
+                foPrintTemplate = new PrintTemplate();
+                foPrintTemplate.laId.Content = client.user.Id;
+                foPrintTemplate.laNumber.Content = client.user.TurnPrefix + client.user.Index;
+                foPrintTemplate.laTime.Content = timeToPrint;
+                foPrintTemplate.lbInfos.ItemsSource = client.user.Infos;
+                foPrintTemplate.tbTurnName.Text = client.user.TurnLine;
+                foPrintTemplate.RefreshSize();
+                foPrintTemplate.Show();
+                System.Threading.Thread.Sleep(2000);
+                // Увеличить вывод в 5 раз
+                PrintDialog printDialog = new PrintDialog();
+                foPrintTemplate.grMain.LayoutTransform = new ScaleTransform(5, 5);
+                // Напечатать элемент
+                printDialog.PrintVisual(foPrintTemplate.grMain, "Печать чека" + client.user.TurnPrefix + client.user.Index);
+                // Удалить трансформацию и снова сделать элемент видимым
+                foPrintTemplate.grMain.LayoutTransform = null;
+                foPrintTemplate.Hide();
+            }
+            ResetButtons();
+            client.user = new User();
 		}
 
 		private void Window_SizeChanged(object sender, SizeChangedEventArgs e)

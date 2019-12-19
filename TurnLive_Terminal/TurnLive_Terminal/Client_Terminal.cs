@@ -5,12 +5,19 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.ObjectModel;
+using System.IO.Ports;
 
 namespace TurnLive_Terminal
 {
 	class Client_Terminal
 	{
-		public string Host { get; set; }
+        /* 11.04.18 UPDATE*/
+        public bool IsComPrinter { get; set; }
+        public string ComPort { get; set; }
+        public int ComBaudRate { get; set; }
+        public SerialPort Serial { get; set; }
+
+        public string Host { get; set; }
 		public int Port { get; set; }
 
 		public User user { get; set; }
@@ -78,14 +85,20 @@ namespace TurnLive_Terminal
 		{
 			PropertiesFile props = new PropertiesFile(AppDomain.CurrentDomain.BaseDirectory + "properties.properties");
 			Host = props.get("Host", "127.0.0.1");
-			Port = int.Parse(props.get("Port", "25565"));
-		}
+            Port = int.Parse(props.get("Port", "25565"));
+            IsComPrinter = bool.Parse(props.get("IsComPrinter", "False"));
+            ComPort = props.get("ComPort", "COM1");
+            ComBaudRate = int.Parse(props.get("ComBaudRate", "4800"));
+        }
 		public void SaveSettings()
 		{
 			PropertiesFile props = new PropertiesFile(AppDomain.CurrentDomain.BaseDirectory + "properties.properties");
 			props.set("Host", Host);
-			props.set("Port", Port.ToString());
-			props.Save();
+            props.set("Port", Port.ToString());
+            props.set("IsComPrinter", IsComPrinter.ToString());
+            props.set("ComPort", ComPort);
+            props.set("ComBaudRate", ComBaudRate.ToString());
+            props.Save();
 		}
 
 		public void LogAdd(string str)
@@ -113,7 +126,7 @@ namespace TurnLive_Terminal
 				if (DateTime.Now - System.IO.File.GetCreationTime(file) > TimeSpan.FromDays(14))
 					System.IO.File.Delete(file);
 			// create and save logFile
-			System.IO.File.WriteAllLines(logsPath + "\\log" + DateTime.Now.ToString("yy-MM-dd_HH-mm-ss") + ".txt", Log);
+			System.IO.File.WriteAllLines(logsPath + "\\log" + DateTime.Now.ToString("yy-MM-dd_HH-mm-ss") + ".txt", Log.ToArray<string>());
 			Log.Clear();
 		}
 	

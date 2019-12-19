@@ -6,9 +6,9 @@
 		<ListBox Name="lbLog" Margin="312,12,207,315" Visibility="Hidden" />
 		<Grid HorizontalAlignment="Left" Margin="12,12,0,12" Name="grFmsMain" Width="439">
 			<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boFms" VerticalAlignment="Stretch"></Border>
-			<Label Content="Федеральная Миграционная Служба" Height="60" Margin="6,6,6,0" Name="laFms" VerticalAlignment="Top" FontSize="30" />
+			<Label Content="МВД РФ" Height="60" Margin="6,6,6,0" Name="laFms" VerticalAlignment="Top" FontSize="30" />
 			<Grid Margin="6,72,6,6" Name="grFmsButtons" />
-			<Label Content="России по республике Татарстан" FontSize="16" Height="39" Name="label1" Margin="6,42,6,0" VerticalAlignment="Top" />
+			<Label Content=" " FontSize="16" Height="39" Name="label1" Margin="6,42,6,0" VerticalAlignment="Top" />
 		</Grid>
 		<Grid Margin="0,12,12,12" Name="grPvsMain" HorizontalAlignment="Right" Width="342">
 			<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="border1" VerticalAlignment="Stretch" />
