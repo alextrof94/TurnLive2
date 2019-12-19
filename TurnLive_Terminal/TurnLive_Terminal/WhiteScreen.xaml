@@ -1,0 +1,9 @@
+﻿<Window x:Class="TurnLive_Terminal.WhiteScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WhiteScreen" Height="300" Width="300" WindowStyle="None" WindowState="Maximized">
+    <Grid>
+		<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="border1" VerticalAlignment="Stretch" />
+		<Label Content="Ждите." Height="60" Margin="63,126,12,0" Name="label1" VerticalAlignment="Top" FontSize="36" />
+	</Grid>
+</Window>

@@ -1,0 +1,14 @@
+﻿<Window x:Class="TurnLive_Table.ServerSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="134" Width="215" WindowStyle="None" Loaded="Window_Loaded" Topmost="True">
+	<Grid>
+		<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="boBG" VerticalAlignment="Stretch" />
+		<TextBox Height="23" HorizontalAlignment="Stretch" Margin="50,12,12,0" Name="tbHost" VerticalAlignment="Top" />
+		<Label Content="Host" Height="28" HorizontalAlignment="Left" Margin="12,10,0,0" Name="laHost" VerticalAlignment="Top" />
+		<TextBox Height="23" HorizontalAlignment="Stretch" Margin="50,41,12,0" Name="tbPort" VerticalAlignment="Top" />
+		<Label Content="Port" Height="28" HorizontalAlignment="Left" Margin="12,39,0,0" Name="laPort" VerticalAlignment="Top" />
+		<Button Content="Подтвердить" HorizontalAlignment="Stretch" IsDefault="True" Margin="82,71,12,12" Name="buEnter" TabIndex="1" VerticalAlignment="Stretch" Click="buEnter_Click" />
+		<Button Content="Отмена" HorizontalAlignment="Left" Margin="12,71,0,12" Name="buCancel" TabIndex="2" VerticalAlignment="Stretch" Width="64" Click="buCancel_Click" />
+	</Grid>
+</Window>

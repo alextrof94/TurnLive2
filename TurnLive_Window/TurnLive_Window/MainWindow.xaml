@@ -1,0 +1,23 @@
+﻿<Window x:Class="TurnLive_Window.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TurnLive Client v2.0" WindowStyle="None" ResizeMode="CanResize" MinWidth="360" MinHeight="450" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="450" Width="360" ShowActivated="True" Loaded="Window_Loaded" Visibility="Visible" Closed="Window_Closed">
+	<Grid MouseDown="Moving">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="457*" />
+			<ColumnDefinition Width="0*" />
+		</Grid.ColumnDefinitions>
+		<Rectangle HorizontalAlignment="Stretch" Name="reBG" Stroke="Black" VerticalAlignment="Stretch" Fill="White" MouseDown="Moving" />
+		<ComboBox Height="86" HorizontalAlignment="Stretch" Margin="12,0,12,140" Name="cbStatus" VerticalAlignment="Bottom" SelectedIndex="0" IsEnabled="False" FontSize="20" ToolTip="Выбор статуса клиента"></ComboBox>
+		<CheckBox Content="Вызвать следующего клиента" Height="40" Margin="12,0,12,94" Name="cbNext" VerticalAlignment="Bottom" IsChecked="True" IsEnabled="False" VerticalContentAlignment="Top" FontSize="20" ToolTip="При присвоении статуса будет вызван следующий клиент" />
+		<Button Content="Вызвать клиента" Height="76" HorizontalAlignment="Stretch" Margin="12,0,12,12" Name="buClientAction" VerticalAlignment="Bottom" Click="buClientAction_Click" FontSize="20"></Button>
+		<Button Content="X" Height="40" HorizontalAlignment="Right" Margin="0,12,12,0" Name="buClose" VerticalAlignment="Top" Width="40" Click="buClose_Click" FontSize="20" ToolTip="Закрыть окно" />
+		<Button Content="Отложенная очередь (4)" Height="40" Margin="58,0,12,232" Name="buWait" VerticalAlignment="Bottom" Click="buWait_Click" FontSize="20" ToolTip="Открыть окно отложенной очереди" />
+		<TextBlock HorizontalAlignment="Stretch" Margin="12,12,58,278" Name="tbInfo" Text="Блок информации. Здесь будет отображаться информация о вызванном клиенте." VerticalAlignment="Stretch" FontSize="20" TextTrimming="None" TextWrapping="Wrap" ToolTip="Блок информации о клиенте" />
+		<ListBox Margin="160,12,58,278" Name="lbLog" Visibility="Hidden" />
+		<Button Content="*" Height="19" HorizontalAlignment="Right" Margin="0,58,12,0" Name="buSettings" VerticalAlignment="Top" Width="19" Padding="0" Click="buSettings_Click" IsEnabled="True" ToolTip="Настройки" />
+		<Button Content="i" Height="19" HorizontalAlignment="Right" Margin="0,58,34,0" Name="buInfo" VerticalAlignment="Top" Width="19" Padding="0" Click="buInfo_Click" ToolTip="Информация о программе" />
+		<Label Content="123" HorizontalAlignment="Right" Margin="0,83,12,0" Name="laWindowClients" Width="41" FontSize="20" ToolTip="Количество клиентов по данному направлению" Height="38" VerticalAlignment="Top" />
+		<Button FontSize="20" Height="40" HorizontalAlignment="Left" Margin="12,0,0,232" Name="buRePlay" ToolTip="Повторно позвать этого клиента" VerticalAlignment="Bottom" Width="40" Content="♫" Click="buRePlay_Click" />
+	</Grid>
+</Window>

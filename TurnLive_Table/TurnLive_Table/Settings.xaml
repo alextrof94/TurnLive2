@@ -1,0 +1,14 @@
+﻿<Window x:Class="TurnLive_Table.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="199" Width="231" WindowStyle="None">
+	<Grid>
+		<Label Content="TableId:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="laLTableId" VerticalAlignment="Top" />
+		<TextBox Height="23" Margin="85,14,15,0" Name="tbTableId" VerticalAlignment="Top" PreviewTextInput="tbTableId_PreviewTextInput" />
+		<Button Content="Сохранить" Margin="12,120,15,12" Name="buSave" Click="buSave_Click" />
+		<Label Content="Интервал:" Height="28" HorizontalAlignment="Left" Margin="12,46,0,0" Name="label1" VerticalAlignment="Top" />
+		<TextBox Height="23" Margin="85,48,15,0" Name="tbInterval" VerticalAlignment="Top" PreviewTextInput="tbTableId_PreviewTextInput" />
+		<Label Content="Размер шрифта:" Height="28" HorizontalAlignment="Left" Margin="12,75,0,0" Name="label2" VerticalAlignment="Top" />
+		<TextBox Height="23" Margin="117,77,15,0" Name="tbFontSize" VerticalAlignment="Top" PreviewTextInput="tbTableId_PreviewTextInput" />
+	</Grid>
+</Window>

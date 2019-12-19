@@ -1,0 +1,13 @@
+﻿<Window x:Class="TurnLive_Tool_RemoveClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="299" Width="299" WindowStyle="SingleBorderWindow" WindowState="Normal" Closing="Window_Closing" Loaded="Window_Loaded" Topmost="False" ResizeMode="NoResize">
+    <Grid>
+		<ListBox Margin="12,164,12,12" Name="lbLog" Visibility="Hidden" />
+		<Label Height="28" HorizontalAlignment="Left" Name="laInform" VerticalAlignment="Top" FontSize="8" Margin="3,-4,0,0" Content="Ожидание" />
+		<Label Content="Введите ID клиента для удаления" Height="38" Margin="12,12,12,0" Name="label1" VerticalAlignment="Top" FontSize="16" />
+		<TextBox Height="53" Margin="12,44,12,0" Name="tbClientId" VerticalAlignment="Top" Text="" FontSize="32" IsEnabled="False" />
+		<TextBlock Margin="12,141,12,12" Name="tbResponse" Text="ОТВЕТ СЕРВЕРА" FontSize="20" TextWrapping="Wrap" />
+		<Button Content="Удалить" Height="32" Margin="12,103,12,0" Name="buSend" VerticalAlignment="Top" FontSize="20" IsEnabled="False" Click="buSend_Click" />
+	</Grid>
+</Window>

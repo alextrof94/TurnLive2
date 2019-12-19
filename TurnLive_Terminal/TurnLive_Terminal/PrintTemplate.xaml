@@ -1,0 +1,16 @@
+﻿<Window x:Class="TurnLive_Terminal.PrintTemplate"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PrintTemplate" Height="317" Width="293" IsVisibleChanged="Window_IsVisibleChanged" Topmost="True">
+    <Grid Name="grMain">
+		<Label Content="ID: " Height="40" Margin="12,12,0,0" Name="laIdL" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40" FontSize="20" />
+		<Label Content="Label" Height="40" Margin="58,12,12,0" Name="laId" VerticalAlignment="Top" FontSize="20" />
+		<Label Content="НОМЕР В ОЧЕРЕДИ" Height="41" Margin="12,46,12,0" Name="laNumberL" VerticalAlignment="Top" FontStretch="Normal" FontSize="26" />
+		<Label Content="А123" FontStretch="Normal" Height="118" Margin="12,58,12,0" Name="laNumber" VerticalAlignment="Top" FontSize="72" FontWeight="Normal" />
+		<Label Content="ВРЕМЯ:" FontSize="20" HorizontalAlignment="Left" Margin="12,0,0,27" Name="laTimeL" Width="80" Height="40" VerticalAlignment="Bottom" />
+		<Label Content="2014-12-12 12:12:12" FontSize="20" Margin="82,0,12,27" Name="laTime" Height="40" VerticalAlignment="Bottom" />
+		<ListBox Margin="12,196,12,73" Name="lbInfos" FontSize="16" />
+		<Label Content="!! СОХРАНЯЙТЕ ТАЛОН !!" FontSize="20" Height="40" Margin="12,0" Name="label1" VerticalAlignment="Bottom" />
+		<TextBlock Height="45" Margin="12,145,12,0" Name="tbTurnName" Text="Оформление вид на жительство" VerticalAlignment="Top" FontSize="16" TextWrapping="Wrap" />
+	</Grid>
+</Window>

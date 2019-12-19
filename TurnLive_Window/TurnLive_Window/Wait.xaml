@@ -1,0 +1,17 @@
+﻿<Window x:Class="TurnLive_Window.Wait"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Wait" Height="377" Width="334" WindowStyle="None" IsVisibleChanged="Window_IsVisibleChanged" Topmost="True">
+	<Grid>
+		<Rectangle Fill="White" HorizontalAlignment="Stretch" Margin="0" Name="reBG" Stroke="Black" VerticalAlignment="Stretch" MouseDown="Moving" />
+		<Button Content="Закрыть" Height="40" HorizontalAlignment="Stretch" Margin="12,12,12,0" Name="buClose" VerticalAlignment="Top" Click="buClose_Click" FontSize="20" />
+		<Button Content="Вернуть в очередь" Height="39" HorizontalAlignment="Stretch" Margin="12,0,12,12" Name="buGetBack" VerticalAlignment="Bottom" Click="buGetBack_Click" FontSize="20" />
+		<DataGrid AutoGenerateColumns="False" Margin="12,58,12,57" Name="dgWait" FontSize="20">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ID" Binding="{Binding Path=Id}" />
+				<DataGridTextColumn Header="НОМЕР" Binding="{Binding Path=Number}" />
+				<DataGridTextColumn Header="ВРЕМЯ" Binding="{Binding Path=Time}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</Window>

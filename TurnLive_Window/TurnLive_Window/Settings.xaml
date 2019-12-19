@@ -1,0 +1,10 @@
+﻿<Window x:Class="TurnLive_Window.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Settings" Height="120" Width="140" WindowStyle="None" Topmost="True">
+    <Grid>
+		<Label Content="WindowId:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="laLWindowId" VerticalAlignment="Top" />
+		<TextBox Height="23" Margin="85,14,15,0" Name="tbWindowId" VerticalAlignment="Top" PreviewTextInput="tbWindowId_PreviewTextInput" />
+		<Button Content="Сохранить" Margin="12,46,15,12" Name="buSave" Click="buSave_Click" />
+	</Grid>
+</Window>

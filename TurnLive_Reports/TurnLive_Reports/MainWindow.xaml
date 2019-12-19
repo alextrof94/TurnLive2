@@ -1,0 +1,21 @@
+﻿<Window x:Class="TurnLive_Reports.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Grid>
+		<ComboBox Height="28" Margin="90,12,12,0" Name="cbReportType" VerticalAlignment="Top" SelectedIndex="0" SelectionChanged="cbReportType_SelectionChanged">
+			<ComboBoxItem Content="Краткий отчет (фамилии по направлению)" />
+			<ComboBoxItem Content="О сотрудниках (фамилии и статусы по окну)" />
+		</ComboBox>
+		<Label Content="Тип отчета:" Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" />
+		<Label Content="Выберите период с" Height="28" HorizontalAlignment="Left" Margin="12,46,0,0" Name="label2" VerticalAlignment="Top" />
+		<DatePicker Height="28" HorizontalAlignment="Left" Margin="135,46,0,0" Name="dpFrom" VerticalAlignment="Top" Width="156" />
+		<Label Content="по" Height="28" HorizontalAlignment="Left" Margin="297,46,0,0" Name="label3" VerticalAlignment="Top" />
+		<DatePicker Height="28" HorizontalAlignment="Left" Margin="327,46,0,0" Name="dpTo" VerticalAlignment="Top" Width="164" />
+		<ListBox Height="156" Margin="12,114,12,0" Name="lbTurns" VerticalAlignment="Top" />
+		<Button Content="Сформировать отчет" Height="23" Margin="12,0,12,12" Name="buCreate" VerticalAlignment="Bottom" Click="buCreate_Click" />
+		<Label Content="Выберите направление:" Height="28" HorizontalAlignment="Left" Margin="12,80,0,0" Name="laType" VerticalAlignment="Top" Width="169" />
+		<TextBox Height="28" HorizontalAlignment="Left" Margin="125,80,0,0" Name="tbWindowId" VerticalAlignment="Top" Width="56" Visibility="Hidden" />
+		<Button Content="Обновить" Height="28" Margin="0,80,241,0" Name="buRefresh" VerticalAlignment="Top" HorizontalAlignment="Right" Width="75" Click="buRefresh_Click" />
+	</Grid>
+</Window>

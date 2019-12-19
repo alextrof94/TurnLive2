@@ -1,0 +1,12 @@
+﻿<Window x:Class="TurnLive_Terminal.TurnsVizualization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TurnsVizualization" Height="300" Width="530" WindowStyle="None" WindowState="Maximized">
+    <Grid SizeChanged="Grid_SizeChanged">
+		<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="border1" VerticalAlignment="Stretch" />
+		<Grid HorizontalAlignment="Left" Margin="12,70,0,118" Name="grBL" Width="200" />
+		<Grid HorizontalAlignment="Right" Margin="0,70,12,118" Name="grBR" Width="211" />
+		<Label Content="Выберите направление" Height="52" Margin="12,12,12,0" Name="label1" VerticalAlignment="Top" FontSize="30" />
+		<Button Content="Вернуться в главное меню" Height="100" Margin="12,0,12,12" Name="buBack" VerticalAlignment="Bottom" FontSize="36" Click="buBack_Click" />
+	</Grid>
+</Window>

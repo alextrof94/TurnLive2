@@ -1,0 +1,186 @@
+﻿<Window x:Class="TurnLive_AdminTools.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="450" Width="590" WindowStyle="SingleBorderWindow" MinWidth="450" MinHeight="450" ResizeMode="CanResize" SizeChanged="Window_SizeChanged" Loaded="Window_Loaded">
+	<Grid Name="grMain">
+		<TabControl HorizontalAlignment="Stretch" Margin="0,32,0,0" Name="tabControl1" VerticalAlignment="Stretch">
+			<TabItem Header="Очереди и пути" Name="tiTurnPath">
+				<Grid Name="grTurnPath">
+					<Grid Margin="6,6,0,211" Name="grTurnTurns" HorizontalAlignment="Left">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="boTurnTurns" VerticalAlignment="Stretch" />
+						<Label Content="Очереди" Height="28" Margin="6,6,87,0" Name="laTurnTurns" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbTurnTurns" />
+						<Button Content="Удалить" HorizontalAlignment="Right" Margin="0,7,6,0" Name="buTurnDelete" Width="75" Height="27" VerticalAlignment="Top" />
+						<Label Content="[!]" FontWeight="Bold" Foreground="Red" Height="28" HorizontalAlignment="Right" Margin="0,6,87,0" Name="laTurnError" VerticalAlignment="Top" Width="23" Visibility="Hidden" />
+					</Grid>
+					<Grid Margin="0,6,6,211" Name="grPathPaths" HorizontalAlignment="Right">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boPathPaths" VerticalAlignment="Stretch" />
+						<Label Content="Пути" Height="28" Margin="6,6,87,0" Name="laPathPaths" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbPathPaths" />
+						<Button Content="Удалить" Height="27" HorizontalAlignment="Right" Margin="0,7,6,0" Name="buPathDelete" VerticalAlignment="Top" Width="75" />
+						<Label Content="[!]" Height="28" HorizontalAlignment="Right" Margin="0,6,87,0" Name="laPathError" VerticalAlignment="Top" Width="23" FontWeight="Bold" Foreground="Red" Visibility="Hidden" />
+					</Grid>
+					<Grid Height="199" HorizontalAlignment="Right" Margin="0,0,6,6" Name="grPathAdd" VerticalAlignment="Bottom" Width="200">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boPathAdd" VerticalAlignment="Stretch" />
+						<Label Content="Добавление нового пути" Height="28" Margin="6,6,6,0" Name="laPathAdd" VerticalAlignment="Top" />
+						<Label Content="Название:" Height="28" HorizontalAlignment="Left" Margin="6,74,0,0" Name="laPathName" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="77,76,6,0" Name="tbPathName" VerticalAlignment="Top" />
+						<Label Content="Номер пути в очереди:" Height="28" HorizontalAlignment="Left" Margin="6,108,0,0" Name="laPathIndex" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="150,110,0,0" Name="tbPathIndex" VerticalAlignment="Top" Width="44" />
+						<CheckBox Content="Вызывать и показывать" Height="16" Margin="6,142,6,0" Name="cbPathShow" VerticalAlignment="Top" />
+						<Button Content="Добавить путь" Height="29" Margin="6,164,6,0" Name="buPathAdd" VerticalAlignment="Top" />
+						<Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" Name="laPathId" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="36,42,0,0" Name="tbPathId" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" />
+					</Grid>
+					<Grid Height="199" Margin="6,0,0,6" Name="grTurnAdd" VerticalAlignment="Bottom" Width="200" HorizontalAlignment="Left">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boTurnAdd" VerticalAlignment="Stretch" Visibility="Visible" IsHitTestVisible="True" />
+						<Label Content="Добавление новой очереди" Height="28" Margin="6,6,6,0" Name="laTurnAdd" VerticalAlignment="Top" />
+						<Label Content="Название:" Height="28" HorizontalAlignment="Left" Margin="6,74,0,0" Name="laTurnName" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="77,76,6,0" Name="tbTurnName" VerticalAlignment="Top" />
+						<Label Content="Префикс:" Height="28" HorizontalAlignment="Left" Margin="6,108,0,0" Name="laTurnPrefix" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="77,110,0,0" Name="tbTurnPrefix" VerticalAlignment="Top" Width="30" />
+						<CheckBox Content="Живая очередь" Height="16" Margin="6,142,6,0" Name="cbTurnIsLive" VerticalAlignment="Top" />
+						<Button Content="Добавить очередь" Height="29" Margin="6,164,6,0" Name="buTurnAdd" VerticalAlignment="Top" />
+						<Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" Name="laTurnId" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="36,42,0,0" Name="tbTurnId" VerticalAlignment="Top" HorizontalAlignment="Left" Width="35" />
+					</Grid>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Кнопки" Name="tiButtons">
+				<Grid Name="grButtons">
+					<Grid HorizontalAlignment="Left" Margin="6,6,0,6" Name="grButtonsAll">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="boButtons" VerticalAlignment="Stretch" />
+						<Label Content="Кнопки" Height="28" Margin="6,6,87,0" Name="laButtons" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbButtons" />
+						<Button Content="Удалить" Height="27" HorizontalAlignment="Right" Margin="0,7,6,0" Name="buButtonsDelete" VerticalAlignment="Top" Width="75" />
+						<Label Content="[!]" FontWeight="Bold" Foreground="Red" Height="28" HorizontalAlignment="Right" Margin="0,6,87,0" Name="laButtonsError" VerticalAlignment="Top" Visibility="Hidden" Width="23" />
+					</Grid>
+					<Grid HorizontalAlignment="Right" Margin="0,6,6,0" Name="grButtonsAdd" Width="200" Height="253" VerticalAlignment="Top">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" IsHitTestVisible="True" Name="boButtonsAdd" VerticalAlignment="Stretch" Visibility="Visible"></Border>
+						<Label Content="Добавление новой кнопки" Height="28" Margin="6,6,6,0" Name="laButtonsAdd" VerticalAlignment="Top" />
+						<Label Content="Название:" Height="28" HorizontalAlignment="Left" Margin="6,74,0,0" Name="laButtonsName" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="77,76,6,0" Name="tbButtonsName" VerticalAlignment="Top" />
+						<Button Content="Добавить кнопку" Height="32" Margin="6,215,6,0" Name="buButtonsAdd" VerticalAlignment="Top" />
+						<Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" Name="laButtonsId" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="36,42,0,0" Name="tbButtonsId" VerticalAlignment="Top" Width="35" />
+						<ComboBox Name="cbBottonsTurn" Margin="77,108,6,0" Height="28" VerticalAlignment="Top" />
+						<Label Content="Очередь:" Height="28" HorizontalAlignment="Left" Margin="6,108,0,0" Name="laButtonsTurn" VerticalAlignment="Top" />
+						<ComboBox Height="28" Margin="110,142,6,0" Name="cbButtonsMainButton" VerticalAlignment="Top" />
+						<Label Content="Главная кнопка:" Height="28" HorizontalAlignment="Left" Margin="6,142,0,0" Name="laButtonsMainButton" VerticalAlignment="Top" />
+						<CheckBox Content="ФМС" Height="16" HorizontalAlignment="Left" Margin="6,184,0,0" Name="cbIsFms" VerticalAlignment="Top" Width="156" />
+					</Grid>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Дни" Name="tiDays">
+				<Grid Name="grDays">
+					<Grid Margin="6,6,0,0" Name="grDaysAll" Height="171" Width="168" HorizontalAlignment="Left" VerticalAlignment="Top">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boDays" VerticalAlignment="Stretch" />
+						<Label Content="Дни" Height="28" Margin="6,6,6,0" Name="laDays" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbDays">
+							<ListBoxItem Content="Понедельник" />
+							<ListBoxItem Content="Вторник" />
+							<ListBoxItem Content="Среда" />
+							<ListBoxItem Content="Четверг" />
+							<ListBoxItem Content="Пятница" />
+							<ListBoxItem Content="Суббота" />
+							<ListBoxItem Content="Воскресенье" />
+						</ListBox>
+					</Grid>
+					<Grid HorizontalAlignment="Right" Margin="0,6,6,130" Name="grDaysIntervals" Width="212">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="boDaysIntervals" VerticalAlignment="Stretch" />
+						<Label Content="Интервалы работы" Height="28" Margin="6,6,87,0" Name="laDaysIntervals" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbDaysIntervals" />
+						<Button Content="Удалить" Height="27" HorizontalAlignment="Right" Margin="0,7,6,0" Name="buDaysIntervalsDelete" VerticalAlignment="Top" Width="75" />
+					</Grid>
+					<Grid Height="119" HorizontalAlignment="Right" Margin="0,0,6,6" Name="grDaysIntervalsAdd" VerticalAlignment="Bottom" Width="212">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" IsHitTestVisible="True" Name="boDaysIntervalsAdd" VerticalAlignment="Stretch" Visibility="Visible" />
+						<Label Content="Добавление интервала" Height="28" Margin="6,6,6,0" Name="laDaysIntervalsAdd" VerticalAlignment="Top" />
+						<Button Content="Добавить интервал" Height="32" Margin="6,76,6,0" Name="buDaysIntervalsAdd" VerticalAlignment="Top" />
+						<Label Content="С" Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" Name="laDaysIntervalsAddFrom" VerticalAlignment="Top" />
+						<Label Content="До" Height="28" HorizontalAlignment="Left" Margin="72,40,0,0" Name="laDaysIntervalsAddTo" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="29,42,0,0" Name="tbDaysIntervalsAddFrom" VerticalAlignment="Top" Width="37" Text="" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="103,42,0,0" Name="tbDaysIntervalsAddTo" Text="" VerticalAlignment="Top" Width="37" />
+					</Grid>
+					<Grid Height="60" HorizontalAlignment="Left" Margin="6,184,0,0" Name="grDaysParams" VerticalAlignment="Top" Width="168">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boDaysParams" VerticalAlignment="Stretch" />
+						<CheckBox Content="Рабочий день" Height="16" HorizontalAlignment="Left" Margin="6,7,0,0" Name="cbDaysParamsWork" VerticalAlignment="Top" />
+						<CheckBox Content="Запись через терминал" Height="16" HorizontalAlignment="Left" Margin="6,29,0,0" Name="cbDaysParamsRecord" VerticalAlignment="Top" />
+					</Grid>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Длины очередей" Name="tiLength">
+				<Grid Name="grLength">
+					<Grid Margin="6,6,287,6" Name="grLengthLengths">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Name="boLength" VerticalAlignment="Stretch" />
+						<Label Content="Очереди" Height="28" Margin="6,6,6,0" Name="laLengthTurns" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbLengthTurns" />
+					</Grid>
+					<Label Content="Понедельник" Height="28" HorizontalAlignment="Right" Margin="0,6,163,0" Name="laLengthDay1" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,8,117,0" Name="tbLength1" VerticalAlignment="Top" Width="40" />
+					<Label Content="Вторник" Height="28" HorizontalAlignment="Right" Margin="0,40,191,0" Name="laLengthDay2" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,42,117,0" Name="tbLength2" VerticalAlignment="Top" Width="40" />
+					<Label Content="Среда" Height="28" HorizontalAlignment="Right" Margin="0,74,204,0" Name="laLengthDay3" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,76,117,0" Name="tbLength3" VerticalAlignment="Top" Width="40" />
+					<Label Content="Четверг" Height="28" HorizontalAlignment="Right" Margin="0,108,194,0" Name="laLengthDay4" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,110,117,0" Name="tbLength4" VerticalAlignment="Top" Width="40" />
+					<Label Content="Пятница" Height="28" HorizontalAlignment="Right" Margin="0,142,190,0" Name="laLengthDay5" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,144,117,0" Name="tbLength5" VerticalAlignment="Top" Width="40" />
+					<Label Content="Суббота" Height="28" HorizontalAlignment="Right" Margin="0,176,192,0" Name="laLengthDay6" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,178,117,0" Name="tbLength6" VerticalAlignment="Top" Width="40" />
+					<Label Content="Воскресенье" Height="28" HorizontalAlignment="Right" Margin="0,210,167,0" Name="laLengthDay7" VerticalAlignment="Top" />
+					<TextBox Height="23" HorizontalAlignment="Right" Margin="0,212,117,0" Name="tbLength7" VerticalAlignment="Top" Width="40" />
+				</Grid>
+			</TabItem>
+			<TabItem Header="Окна" Name="tiWindows">
+				<Grid Name="grWindows">
+					<Grid HorizontalAlignment="Left" Margin="6,6,0,192" Name="grWindowsAll">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="boWindows" VerticalAlignment="Stretch" />
+						<Label Content="Окна" Height="28" Margin="6,6,87,0" Name="laWindows" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbWindows" />
+						<Button Content="Удалить" Height="27" HorizontalAlignment="Right" Margin="0,7,6,0" Name="buWindowsDelete" VerticalAlignment="Top" Width="75" />
+						<Label Content="[!]" FontWeight="Bold" Foreground="Red" Height="28" HorizontalAlignment="Right" Margin="0,6,87,0" Name="laWindowsError" VerticalAlignment="Top" Visibility="Hidden" Width="23" />
+					</Grid>
+					<Grid Height="180" HorizontalAlignment="Left" Margin="6,0,0,6" Name="grWindowsAdd" VerticalAlignment="Bottom" Width="200">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" IsHitTestVisible="True" Name="boWindowsAdd" VerticalAlignment="Stretch" Visibility="Visible" />
+						<Label Content="Добавление нового окна" Height="28" Margin="6,6,6,0" Name="laWindowsAdd" VerticalAlignment="Top" />
+						<Label Content="Название:" Height="28" HorizontalAlignment="Left" Margin="6,74,0,0" Name="laWindowsName" VerticalAlignment="Top" />
+						<TextBox Height="23" Margin="77,76,6,0" Name="tbWindowsName" VerticalAlignment="Top" />
+						<Label Content="Фактический номер окна:" Height="28" HorizontalAlignment="Left" Margin="6,108,0,0" Name="laWindowsIndex" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="164,110,0,0" Name="tbWindowsIndex" VerticalAlignment="Top" Width="30" />
+						<Button Content="Добавить окно" Height="32" Margin="6,142,6,0" Name="buWindowsAdd" VerticalAlignment="Top" />
+						<Label Content="ID:" Height="28" HorizontalAlignment="Left" Margin="6,40,0,0" Name="laWindowsId" VerticalAlignment="Top" />
+						<TextBox Height="23" HorizontalAlignment="Left" Margin="36,42,0,0" Name="tbWindowsId" VerticalAlignment="Top" Width="35" />
+					</Grid>
+					<Grid HorizontalAlignment="Right" Margin="0,6,6,126" Name="grWindowsPaths">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" Margin="0" Name="boWindowsPaths" VerticalAlignment="Stretch" />
+						<Label Content="Пути" Height="28" Margin="6,6,87,0" Name="laWindowsPaths" VerticalAlignment="Top" />
+						<ListBox Margin="6,40,6,6" Name="lbWindowsPaths" />
+						<Button Content="Удалить" Height="27" HorizontalAlignment="Right" Margin="0,7,6,0" Name="buWindowsPathsDelete" VerticalAlignment="Top" Width="75" />
+					</Grid>
+					<Grid HorizontalAlignment="Right" Margin="0,0,6,6" Name="grWindowsPathsAdd" VerticalAlignment="Bottom" Height="114">
+						<Border BorderBrush="Silver" BorderThickness="1" HorizontalAlignment="Stretch" IsHitTestVisible="True" Name="boWindowsPathsAdd" VerticalAlignment="Stretch" Visibility="Visible" />
+						<Label Content="Добавление обслуживаемого пути" Height="28" Margin="6,6,6,0" Name="laWindowsPathsAdd" VerticalAlignment="Top" />
+						<Label Content="Путь:" Height="28" HorizontalAlignment="Left" Margin="6,42,0,0" Name="laWindowsPathsPath" VerticalAlignment="Top" />
+						<Button Content="Добавить путь" Height="32" Margin="6,76,6,0" Name="buWindowsPathsAdd" VerticalAlignment="Top" />
+						<ComboBox Height="28" Margin="50,42,6,0" Name="cbWindowsPathsPath" VerticalAlignment="Top" />
+					</Grid>
+				</Grid>
+			</TabItem>
+			<TabItem Header="Табло" Name="tiTables">
+				<Grid Name="grTables" />
+			</TabItem>
+			<TabItem Header="Информация" Name="tiInfos">
+				<Grid Name="grInfos" />
+			</TabItem>
+			<TabItem Header="Клиенты" Name="tabItem1">
+				<Grid />
+			</TabItem>
+			<TabItem Header="Управление БД" Name="tiDB">
+				<Grid Name="grDB" />
+			</TabItem>
+		</TabControl>
+		<Button Content="Обновить" Height="23" Margin="6,6,120,0" Name="buRefresh" VerticalAlignment="Top" Click="buRefresh_Click" />
+		<Button Content="Сохранить" Height="23" HorizontalAlignment="Right" Margin="0,6,6,0" Name="buSave" VerticalAlignment="Top" Width="108" />
+	</Grid>
+</Window>
+
